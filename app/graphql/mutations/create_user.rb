@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateUser < Mutations::BaseMutation
     argument :name, String, required: true
@@ -6,8 +8,8 @@ module Mutations
     field :user, Types::UserType, null: true
     field :errors, [String], null: false
 
-    def resolve(name:, email:)
-      user = User.new(name: name, email: email)
+    def resolve(params)
+      user = User.new(name: params[:name], email: params[:email])
       if user.save
         { user: user, errors: [] }
       else
