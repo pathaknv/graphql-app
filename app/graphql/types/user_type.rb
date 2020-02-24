@@ -3,9 +3,15 @@ module Types
     field :id, ID, null: false
     field :name, String, null: true
     field :email, String, null: true
-    field :books, [Types::BookType], null: true
+    field :books, [Types::BookType], null: true do
+      argument :limit, Integer, required: false
+    end
     field :books_count, Integer, null: true
     field :first_book, Types::BookType, null: true
+
+    def books(limit: nil)
+      object.books.limit(limit)
+    end
 
     def books_count
       object.books.count
