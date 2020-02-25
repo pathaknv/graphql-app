@@ -4,6 +4,16 @@ Following are some sample queries
 
 ### Query Types:
 ```
+query fetchUser {
+  user(id: 9) {
+    id
+    name
+    email
+  }
+}
+```
+
+```
 query fetchUsers {
   users {
     id
@@ -49,6 +59,16 @@ query fetchLimitedUsers {
 ```
 
 ```
+query fetchBook {
+  book(id: 1) {
+    id
+    title
+    userName
+  }
+}
+```
+
+```
 query fetchBooks {
   books {
     id
@@ -64,6 +84,77 @@ query fetchLimitedBooks {
     id
     title
     userName
+  }
+}
+```
+
+
+### Mutations:
+
+```
+mutation createUser {
+  createUser(input: { name: "Nikhil Pathak", email: "nikhil@gmail.com" }) {
+    user {
+      id
+      name
+      email
+    }
+    errors
+  }
+}
+```
+
+```
+mutation updateUser {
+  updateUser(input: { id: 9, email: "nikhil.pathak@gmail.com" }) {
+    user {
+      id
+      name
+      email
+    }
+    errors
+  }
+}
+```
+
+```
+mutation deleteUser {
+  deleteUser(input: { id: 9 }) {
+    message
+  }
+}
+```
+
+```
+mutation createBook {
+  createBook(input: { userId: 7, title: "Harry Potter - Part 1" }) {
+    book {
+      id
+      title
+      userName
+    }
+    errors
+  }
+}
+```
+
+```
+mutation updateBook {
+  updateBook(input: { id: 23, title: "Harry Potter - Philosopher Stone" }) {
+    book {
+      id
+      title
+      userName
+    }
+    errors
+  }
+}
+```
+
+```
+mutation deleteBook {
+  deleteBook(input: { id: 23 }) {
+    message
   }
 }
 ```
