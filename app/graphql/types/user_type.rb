@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class UserType < Types::BaseObject
     field :id, ID, null: false
@@ -10,7 +12,11 @@ module Types
     field :first_book, Types::BookType, null: true
 
     def books(limit: nil)
-      object.books.limit(limit)
+      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_ids, loader|
+        Book.where(user_id: user_ids).limit(limit).each do |book|
+          loader.call(book.user_id) { |data| data << book }
+        end
+      end
     end
 
     def books_count

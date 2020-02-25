@@ -43,6 +43,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    batch-loader (1.4.1)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -171,6 +172,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  batch-loader
   bootsnap (>= 1.1.0)
   byebug
   coffee-rails (~> 4.2)
