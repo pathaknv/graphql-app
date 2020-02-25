@@ -1,24 +1,69 @@
-# README
+# GraphQL sample API only rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Following are some sample queries
 
-Things you may want to cover:
+### Query Types:
+```
+query fetchUsers {
+  users {
+    id
+    name
+    email
+    booksCount
+    books {
+      id
+      title
+    }
+  }
+}
+```
 
-* Ruby version
+```
+query fetchLimitedBooksOfUsers {
+  users {
+    id
+    name
+    email
+    booksCount
+    books(limit: 2) {
+      id
+      title
+    }
+  }
+}
+```
 
-* System dependencies
+```
+query fetchLimitedUsers {
+  users(page: 2, limit: 3) {
+    id
+    name
+    email
+    booksCount
+    books {
+      id
+      title
+    }
+  }
+}
+```
 
-* Configuration
+```
+query fetchBooks {
+  books {
+    id
+    title
+    userName
+  }
+}
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+query fetchLimitedBooks {
+  books(page: 2, limit: 4) {
+    id
+    title
+    userName
+  }
+}
+```
