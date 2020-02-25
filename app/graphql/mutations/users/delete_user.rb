@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mutations
+module Mutations::Users
   class DeleteUser < Mutations::BaseMutation
     argument :id, ID, required: true
 

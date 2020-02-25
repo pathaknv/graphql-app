@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mutations
+module Mutations::Books
   class UpdateBook < Mutations::BaseMutation
     argument :id, ID, required: true
     argument :title, String, required: false
