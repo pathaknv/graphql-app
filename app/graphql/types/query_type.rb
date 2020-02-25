@@ -13,12 +13,12 @@ module Types
     end
 
     #Get user details
-    field :user, Types::UserType, null: false do
+    field :user, Types::UserType, null: true do
       argument :id, ID, required: true
     end
 
     def user(id:)
-      User.find(id)
+      User.find_by_id(id)
     end
 
     #Get books list
@@ -32,12 +32,12 @@ module Types
     end
 
     #Get book details
-    field :book, Types::BookType, null: false, description: 'Get a specific book' do
+    field :book, Types::BookType, null: true, description: 'Get a specific book' do
       argument :id, ID, required: true
     end
 
     def book(id:)
-      Book.find(id)
+      Book.find_by_id(id)
     end
 
     private
