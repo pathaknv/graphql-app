@@ -7,13 +7,14 @@ module Types
     field :email, String, null: true
     field :books, [Types::BookType], null: true do
       argument :limit, Integer, required: false
+      argument :offset, Integer, required: false
     end
     field :books_count, Integer, null: true
     field :first_book, Types::BookType, null: true
 
-    def books(limit: nil)
+    def books(limit: nil, offset: nil)
       BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_ids, loader|
-        Book.where(user_id: user_ids).limit(limit).each do |book|
+        Book.where(user_id: user_ids).offset(offset).limit(limit).each do |book|
           loader.call(book.user_id) { |data| data << book }
         end
       end
