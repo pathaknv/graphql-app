@@ -12,6 +12,7 @@ RSpec.describe Mutations::Books::CreateBook do
             id
             title
             userId
+            userName
           }
           errors
         }

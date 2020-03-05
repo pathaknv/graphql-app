@@ -10,11 +10,8 @@ module Mutations::Users
       user = User.find_by_id(params[:id])
       return { message: "Can't find User" } if user.nil?
 
-      if user.destroy
-        { message: 'User and associated books deleted!' }
-      else
-        { message: user.errors.full_messages }
-      end
+      user.destroy
+      { message: 'User and associated books deleted!' }
     end
   end
 end
