@@ -6,7 +6,7 @@ RSpec.describe Mutations::Books::UpdateBook do
   let(:user) { create(:user) }
   let!(:book) { create(:book, user_id: user.id) }
   let(:update_book_query) do
-    <<~GraphQL
+    <<~GRAPHQL
       mutation updateBook($id: ID!, $title: String) {
         updateBook(input: { id: $id, title: $title }) {
           book {
@@ -18,7 +18,7 @@ RSpec.describe Mutations::Books::UpdateBook do
           errors
         }
       }
-    GraphQL
+    GRAPHQL
   end
 
   it 'should update book' do

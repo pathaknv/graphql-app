@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Mutations::Books::CreateBook do
   let!(:user) { create(:user) }
   let(:create_book_query) do
-    <<~GraphQL
+    <<~GRAPHQL
       mutation createBook($userId: ID!, $title: String!) {
         createBook(input: { userId: $userId, title: $title }) {
           book {
@@ -17,7 +17,7 @@ RSpec.describe Mutations::Books::CreateBook do
           errors
         }
       }
-    GraphQL
+    GRAPHQL
   end
 
   it 'should create book' do

@@ -2,8 +2,11 @@
 
 module Types
   class QueryType < Types::BaseObject
-    #Get users list
-    field :users, [Types::UserType], null: false, description: 'Get List of all users with their books' do
+    # Get users list
+    field :users,
+          [Types::UserType],
+          null: false,
+          description: 'Get List of all users with their books' do
       argument :page, Integer, required: false
       argument :limit, Integer, required: false
     end
@@ -12,17 +15,20 @@ module Types
       load_paginated_resource(model: User.name, page: page, limit: limit)
     end
 
-    #Get user details
+    # Get user details
     field :user, Types::UserType, null: true do
       argument :id, ID, required: true
     end
 
     def user(id:)
-      User.find_by_id(id)
+      User.find_by(id: id)
     end
 
-    #Get books list
-    field :books, [Types::BookType], null: false, description: 'Get List of all books' do
+    # Get books list
+    field :books,
+          [Types::BookType],
+          null: false,
+          description: 'Get List of all books' do
       argument :page, Integer, required: false
       argument :limit, Integer, required: false
     end
@@ -31,13 +37,16 @@ module Types
       load_paginated_resource(model: Book.name, page: page, limit: limit)
     end
 
-    #Get book details
-    field :book, Types::BookType, null: true, description: 'Get a specific book' do
+    # Get book details
+    field :book,
+          Types::BookType,
+          null: true,
+          description: 'Get a specific book' do
       argument :id, ID, required: true
     end
 
     def book(id:)
-      Book.find_by_id(id)
+      Book.find_by(id: id)
     end
 
     private

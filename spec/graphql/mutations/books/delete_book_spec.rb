@@ -6,13 +6,13 @@ RSpec.describe Mutations::Books::DeleteBook do
   let!(:user) { create(:user) }
   let!(:book) { create(:book, user_id: user.id) }
   let(:delete_book_query) do
-    <<~GraphQL
+    <<~GRAPHQL
       mutation deleteBook($id: ID!) {
         deleteBook(input: { id: $id }) {
           message
         }
       }
-    GraphQL
+    GRAPHQL
   end
 
   it 'should delete book' do

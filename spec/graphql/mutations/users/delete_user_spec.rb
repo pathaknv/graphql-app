@@ -5,13 +5,13 @@ require 'rails_helper'
 RSpec.describe Mutations::Users::DeleteUser do
   let!(:user) { create(:user) }
   let(:delete_user_query) do
-    <<~GraphQL
+    <<~GRAPHQL
       mutation deleteUser($id: ID!) {
         deleteUser(input: { id: $id }) {
           message
         }
       }
-    GraphQL
+    GRAPHQL
   end
 
   it 'should delete user' do

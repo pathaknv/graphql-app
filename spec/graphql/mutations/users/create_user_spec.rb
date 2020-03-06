@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Mutations::Users::CreateUser do
   let(:create_user_query) do
-    <<~GraphQL
+    <<~GRAPHQL
       mutation($name: String!, $email: String!) {
         createUser(input: { name: $name, email: $email }) {
           user {
@@ -15,7 +15,7 @@ RSpec.describe Mutations::Users::CreateUser do
           errors
         }
       }
-    GraphQL
+    GRAPHQL
   end
 
   it 'should create user' do

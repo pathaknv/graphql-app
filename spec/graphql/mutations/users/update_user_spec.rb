@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Mutations::Users::UpdateUser do
   let(:update_user_query) do
-    <<~GraphQL
+    <<~GRAPHQL
       mutation updateUser($id: ID!, $name: String, $email: String) {
         updateUser(input: { id: $id, name: $name, email: $email }) {
           user {
@@ -15,7 +15,7 @@ RSpec.describe Mutations::Users::UpdateUser do
           errors
         }
       }
-    GraphQL
+    GRAPHQL
   end
 
   before { @user = create(:user) }

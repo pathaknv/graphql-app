@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Types
+  # User Type
   class UserType < Types::BaseObject
     field :id, ID, null: false
     field :name, String, null: true
@@ -16,11 +17,7 @@ module Types
       if limit.present? || offset.present?
         object.books.offset(offset).limit(limit)
       else
-        BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_ids, loader|
-          Book.where(user_id: user_ids).each do |book|
-            loader.call(book.user_id) { |data| data << book }
-          end
-        end
+        lazy_load_books(object.id)
       end
     end
 
@@ -30,6 +27,16 @@ module Types
 
     def first_book
       object.books.first
+    end
+
+    private
+
+    def lazy_load_books(user_id)
+      BatchLoader::GraphQL.for(user_id).batch(default_value: []) do |user_ids, loader|
+        Book.where(user_id: user_ids).each do |book|
+          loader.call(book.user_id) { |data| data << book }
+        end
+      end
     end
   end
 end
