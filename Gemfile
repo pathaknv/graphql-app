@@ -53,6 +53,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'graphiql-rails'
   gem 'rubocop-rails', require: false
+  gem 'overcommit'
+  gem 'fasterer'
+  gem 'brakeman'
 end
 
 group :test do
